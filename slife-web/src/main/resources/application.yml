@@ -1,0 +1,66 @@
+spring:
+  application:
+    name: slife
+  profiles:
+    active: dev
+
+  aop:
+    proxy-target-class: true
+  freemarker:
+    template-loader-path: classpath:/templates/
+    prefer-file-system-access: false
+    settings:
+      template_update_delay: 0
+      classic_compatible: true
+      number_format: 0.######
+      template_exception_handler: ignore
+    request-context-attribute: rc
+    charset: UTF-8
+
+  redis:
+    database: 0
+    host: 1.1.1.2
+    port: 6379
+    password: 123456
+    pool:
+      max-active: 8
+      max-wait: -1
+      max-idle: 18
+      min-idle: 0
+    timeout: 0
+
+
+sitemesh:
+  contentPath: /*
+  decoratorPath: classpath:/layouts/default.jsp
+  excludedPaths: /js/*,/assets/*,/css/*
+
+
+
+management:
+  security:
+    enabled: false
+
+
+logging.level.project.user.UserClient: DEBUG
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.slife.entity
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  typeAliasesPackage: com.slife.entity
+  global-config:
+    id-type: 2
+    field-strategy: 2
+    auto-set-db-type: true
+    db-column-underline: true
+    refresh-mapper: true
+    metaObjectHandler: com.slife.config.plus.SysMetaObjectHandler
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+security:
+  basic:
+    enabled: false
+
